@@ -36,7 +36,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
                                 <connections>
-                                    <action selector="buttonAddMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ypE-pT-dp9"/>
+                                    <action selector="addButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ggE-66-7mm"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EeM-1Z-Ebx">
@@ -44,7 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IndexPathone" id="srK-ln-5lT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoveCell" id="srK-ln-5lT">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="374" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="srK-ln-5lT" id="LEQ-Bb-j2T">
@@ -72,9 +72,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="titleFilmView" destination="EeM-1Z-Ebx" id="bac-sI-fj2"/>
-                        <outlet property="titleNameMovie" destination="3Hm-wn-EfO" id="OQw-PA-D66"/>
-                        <outlet property="titleYearMovie" destination="9j8-A9-Rx3" id="sKs-4Z-jwm"/>
+                        <outlet property="tableView" destination="EeM-1Z-Ebx" id="HNv-hg-zJy"/>
+                        <outlet property="titlElabel" destination="3Hm-wn-EfO" id="RGt-qP-jZr"/>
+                        <outlet property="yerarLabel" destination="9j8-A9-Rx3" id="M4Q-Oc-tSS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -7,43 +7,62 @@
 
 import UIKit
 
-class ViewController: UIViewController , UITableViewDataSource , UITableViewDelegate{
+class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
+   
     
-    @IBOutlet weak var titleNameMovie: UITextField!
     
-    @IBOutlet weak var titleYearMovie: UITextField!
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titlElabel: UITextField!
+    @IBOutlet weak var yerarLabel: UITextField!
+   
     struct Move {
-    var name: String?
-    var date: Int?
+        var name:String
+        var year:Int
     }
+
+    var moves:[Move] = []
     
-    var movies:[Move] = []
-    @IBAction func buttonAddMovie(_ sender: Any) {
-        let newMove = Move(name:titleNameMovie.text, date:titleYearMovie.hashValue)
-        movies.append(newMove)
-        print(newMove)
-     
+ 
+    @IBAction func addButtonAction(_ sender: Any) {
+        if self.titlElabel.text != "" && self.yerarLabel.text != ""{
+            let move: Move = Move(name: self.titlElabel.text!, year: Int(self.yerarLabel.text!)!)
+            self.moves.append(move)
+            self.tableView.reloadData()
+        }else {
+            showErrorAlert()
+        }
     }
-  
+    func  showErrorAlert() {
+        let alert = UIAlertController(title: "OOPS", message: "Please type name and yer", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+   
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IndexPathone", for: indexPath)
-        
-        return cell
-    }
-    
+         self.moves.count
+     }
+     
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoveCell")!
+         cell.selectionStyle = .none
+         cell.textLabel?.text = self.moves[indexPath.row].name + " " + "\(self.moves[indexPath.row].year)"
+         return cell
+     }
 
-    @IBOutlet weak var titleFilmView: UITableView!
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleNameMovie.alpha = 0.5
-        titleYearMovie.alpha = 0.5
-  
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+
+     
     }
 
 
