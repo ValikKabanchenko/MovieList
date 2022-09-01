@@ -9,13 +9,14 @@ import UIKit
 
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource{
    
-    
+
     
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titlElabel: UITextField!
     @IBOutlet weak var yerarLabel: UITextField!
    
+    @IBOutlet weak var errorLabel: UILabel!
     struct Move {
         var name:String
         var year:Int
@@ -25,6 +26,14 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     
  
     @IBAction func addButtonAction(_ sender: Any) {
+        
+        let duplicate = moves.first  {$0.name == self.titlElabel.text}
+        
+        if duplicate != nil {
+            errorLabel.text = "This movie is already on your list"
+          return
+        }
+       
         if self.titlElabel.text != "" && self.yerarLabel.text != ""{
             let move: Move = Move(name: self.titlElabel.text!, year: Int(self.yerarLabel.text!)!)
             self.moves.append(move)
@@ -32,7 +41,9 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         }else {
             showErrorAlert()
         }
+        
     }
+        
     func  showErrorAlert() {
         let alert = UIAlertController(title: "OOPS", message: "Please type name and yer", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
