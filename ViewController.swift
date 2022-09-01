@@ -12,29 +12,29 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
     @IBOutlet weak var titleNameMovie: UITextField!
     
     @IBOutlet weak var titleYearMovie: UITextField!
-   
-    var labelName  = []
+    
+    struct Move {
+    var name: String?
+    var date: Int?
+    }
+    
+    var movies:[Move] = []
     @IBAction func buttonAddMovie(_ sender: Any) {
-        
-        if titleNameMovie.text! > " " || titleYearMovie.text! > " "{
-            labelName.append("\(titleNameMovie.text! + " " + titleYearMovie.text!)")
-        }else  {
-            print("you dont write element")
-        }
-        print(labelName)
-        
-        
+        let newMove = Move(name:titleNameMovie.text, date:titleYearMovie.hashValue)
+        movies.append(newMove)
+        print(newMove)
+     
     }
   
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return labelName.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IndexPathone", for: indexPath)
         
-         return cell
+        return cell
     }
     
 
