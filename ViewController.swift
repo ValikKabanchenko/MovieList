@@ -17,14 +17,15 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     @IBOutlet weak var yerarLabel: UITextField!
    
     @IBOutlet weak var errorLabel: UILabel!
+    
     struct Move {
         var name:String
         var year:Int
     }
 
-    var moves:[Move] = []
+    var moves: [Move]  = []
+
     
- 
     @IBAction func addButtonAction(_ sender: Any) {
         
         let duplicate = moves.first  {$0.name == self.titlElabel.text}
@@ -32,16 +33,22 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         if duplicate != nil {
             errorLabel.text = "This movie is already on your list"
           return
+        }else {
+            errorLabel.text = " "
         }
        
         if self.titlElabel.text != "" && self.yerarLabel.text != ""{
             let move: Move = Move(name: self.titlElabel.text!, year: Int(self.yerarLabel.text!)!)
             self.moves.append(move)
-            self.tableView.reloadData()
+
+            UIView.setAnimationsEnabled(false)
+            self.tableView.beginUpdates()
+            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: UITableView.RowAnimation.none)
+            self.tableView.endUpdates()
         }else {
             showErrorAlert()
         }
-        
+        print("проверка\(moves)")
     }
         
     func  showErrorAlert() {
@@ -53,7 +60,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         self.present(alert, animated: true, completion: nil)
     }
    
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          self.moves.count
      }
