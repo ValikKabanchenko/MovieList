@@ -40,11 +40,13 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         if self.titlElabel.text != "" && self.yerarLabel.text != ""{
             let move: Move = Move(name: self.titlElabel.text!, year: Int(self.yerarLabel.text!)!)
             self.moves.append(move)
+            
 
             UIView.setAnimationsEnabled(false)
             self.tableView.beginUpdates()
-            self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: UITableView.RowAnimation.none)
+            self.tableView.insertRows(at: [IndexPath(row: moves.count-1, section: 0)], with: .none)
             self.tableView.endUpdates()
+            
         }else {
             showErrorAlert()
         }
